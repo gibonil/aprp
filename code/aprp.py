@@ -72,9 +72,10 @@ def APRP(CTL,PERT,flag=''):
 
     
     # Make sure the cld fractions are expressed as fraction and not percent
-    if np.max(clt1)>1.:
+    
+    if np.mean(clt1)>1.:
         clt1=clt1/100.
-    if np.max(clt2)>1.:
+    if np.mean(clt2)>1.:
         clt2=clt2/100.
 
     # Derive overcast conditions
