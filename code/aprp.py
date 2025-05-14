@@ -96,6 +96,7 @@ def APRP(CTL,PERT,flag=''):
     rsusoc2=(1/clt2)*(rsus2-(1-clt2)*rsuscs2)
 
     # Mask these where values are unphysical 
+
     rsdsoc1=xr.where(rsdsoc1 > rsds1,np.nan,rsdsoc1)   
     rsusoc1=xr.where(rsusoc1 > rsus1,np.nan,rsusoc1)
     rsutoc1=xr.where(rsutoc1 < 0,np.nan,rsutoc1)
@@ -236,7 +237,12 @@ def APRP(CTL,PERT,flag=''):
         'cld_ghan':(('time','lat','lon'),cld_ghan.data),# Reconcile with Ghan
     },
     coords={'time': TIME,'lat': LAT,'lon': LON},
-    ) 
+    )
+
+    # test to remove error upond adding missing bounds 
+
+    DS.lat.attrs = {"units" : "degrees_north"}
+
     DS.lat.attrs["axis"] = "Y"
     DS.lon.attrs["axis"] = "X"
     output = DS.bounds.add_missing_bounds()
