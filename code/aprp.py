@@ -72,11 +72,20 @@ def APRP(CTL,PERT,flag=''):
 
     
     # Make sure the cld fractions are expressed as fraction and not percent
-    
+
     if np.mean(clt1)>1.:
+
         clt1=clt1/100.
+
     if np.mean(clt2)>1.:
+        
         clt2=clt2/100.
+
+    # If cld fraction is superior to 1 after this test set it to 1
+
+    clt1 = np.where(clt1 > 1, 1, clt1)
+
+    clt2 = np.where(clt2 > 1, 1, clt2)
 
     # Derive overcast conditions
     rsutoc1=(1/clt1)*(rsut1-(1-clt1)*rsutcs1)
