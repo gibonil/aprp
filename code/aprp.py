@@ -235,11 +235,12 @@ def APRP(CTL,PERT,flag=''):
         'noncld_abs':(('time','lat','lon'),noncld_abs.data),
         'sfc_alb_ghan':(('time','lat','lon'),sfc_alb_ghan.data), # Reconcile with Ghan
         'cld_ghan':(('time','lat','lon'),cld_ghan.data),# Reconcile with Ghan
+        'areacella': (('lat', 'lon'), CTL.areacella.data), # preserve areacella
     },
     coords={'time': TIME,'lat': LAT,'lon': LON},
     )
 
-    # test to remove error upond adding missing bounds 
+    # test to remove error upon adding missing bounds 
 
     DS.lat.attrs = {"units" : "degrees_north"}
 
